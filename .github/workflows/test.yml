@@ -1,0 +1,33 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # フルクローンしてブランチ情報を取得
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18 # 必要に応じてバージョン変更
+
+      - name: Install dependencies
+        run: npm install # または yarn install
+
+      - name: Run tests
+        run: npm test # または yarn test
