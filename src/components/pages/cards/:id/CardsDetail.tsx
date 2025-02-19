@@ -11,12 +11,11 @@ import { useMessage } from "@/lib/hook/useMessage";
 
 export const CardsDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [userSkillList, setUserSkillList] = useState<UserWithSkills[]>([]);
+  const [userSkillList, setUserSkillList] = useState<UserWithSkills | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const { showMessage } = useMessage();
   useEffect(() => {
     if (!id) {
-      alert("idがありません");
       return;
     }
     const fetchUserSkillList = async () => {
@@ -32,7 +31,7 @@ export const CardsDetail = () => {
       }
     };
     fetchUserSkillList();
-  }, []);
+  }, [id, showMessage]);
   return (
     <Box bg={"gray.300"} h={"100vh"} position={"relative"}>
       {isLoading ? (
@@ -40,7 +39,7 @@ export const CardsDetail = () => {
           <Loading />
         </Box>
       ) : (
-        <UserCard userSkillList={userSkillList} />
+        userSkillList && <UserCard userSkillList={userSkillList} />
       )}
     </Box>
   );

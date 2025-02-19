@@ -20,3 +20,15 @@ export interface UserSkill {
   user_id: string;
   skill_id: string;
 }
+
+// 主にフォーム用
+
+export interface FormValidate {
+  user_id: string;
+  name: string;
+  description: string;
+  skill: Array<string>;
+  githubId: string;
+  qiitaId: string;
+  xId: string;
+}
