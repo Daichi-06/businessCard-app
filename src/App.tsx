@@ -1,7 +1,14 @@
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./router/Router";
+import { Toaster } from "@/components/ui/toaster";
+
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
+      <BrowserRouter>
+        <Router />
+        <Toaster />
+      </BrowserRouter>
     </>
   );
 }
